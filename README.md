@@ -1,2 +1,19 @@
 # pads-io
-A set of I/O wrappers for the PADS course (https://openedu.ru/course/ITMOUniversity/PADS/?session=spring_2017)
+В данном репозитории доступны наиболее свежие версии оберток ввода-вывода для различных языков программирования.
+Эти обертки предназначены для использования в онлайн-курсе "[Алгоритмы программирования и структуры данных](https://openedu.ru/course/ITMOUniversity/PADS/?session=spring_2017)".
+
+В настоящий момент доступны обертки для:
+
+## Java
+
+* IO.java
+
+## C
+
+* openedu.h
+* openedu.c
+
+## C++
+
+* openedu.hpp
+* openedu.cpp
