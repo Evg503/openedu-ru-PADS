@@ -162,7 +162,7 @@ openedu_out const &openedu_out::operator << (long long value) const
 
 openedu_out const &openedu_out::operator << (double value) const
 {
-    fprintf(ouf, "%.17g", value);
+    fprintf(ouf, "%.17lg", value);
     return *this;
 }
 

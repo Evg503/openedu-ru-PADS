@@ -105,14 +105,34 @@ void print_char(char value) {
     fputc(value, ouf);
 }
 
+void println_char(char value) {
+    fputc(value, ouf);
+    fputc('\n', ouf);
+}
+
 void print_i32(int value) {
     fprintf(ouf, "%d", value);
+}
+
+void println_i32(int value) {
+    print_i32(value);
+    fputc('\n', ouf);
 }
 
 void print_i64(long long value) {
     fprintf(ouf, "%lld", value);
 }
 
+void println_i64(long long value) {
+    print_i64(value);
+    fputc('\n', ouf);
+}
+
 void print_double(double value) {
-    fprintf(ouf, "%.17le", value);
+    fprintf(ouf, "%.17lg", value);
+}
+
+void println_double(double value) {
+    print_double(value);
+    fputc('\n', ouf);
 }

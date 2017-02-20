@@ -43,9 +43,19 @@ char *next_unbounded();
 void print_i32(int value);
 
 /**
+ * Prints the given signed int32 value and puts a newline after it.
+ */
+void println_i32(int value);
+
+/**
  * Prints the given signed int64 value.
  */
 void print_i64(long long value);
+
+/**
+ * Prints the given signed int64 value and puts a newline after it.
+ */
+void println_i64(long long value);
 
 /**
  * Prints the given double value.
@@ -53,9 +63,19 @@ void print_i64(long long value);
 void print_double(double value);
 
 /**
+ * Prints the given double value and puts a newline after it.
+ */
+void println_double(double value);
+
+/**
  * Prints the given character.
  */
 void print_char(char value);
+
+/**
+ * Prints the given character and puts a newline after it.
+ */
+void println_char(char value);
 
 /**
  * Prints the given string.
