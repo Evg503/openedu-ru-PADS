@@ -87,7 +87,7 @@ int openedu_printf(char *fmt_string, ...) {
     int rv;
     va_list args;
     va_start(args, fmt_string);
-    vfprintf(ouf, fmt_string, args);
+    rv = vfprintf(ouf, fmt_string, args);
     va_end(args);
     return rv;
 }
