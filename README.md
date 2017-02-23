@@ -79,7 +79,7 @@
 
 Примеры:
 
-* example.py
+* example.pypy
 * input.txt
 * output.txt
 
