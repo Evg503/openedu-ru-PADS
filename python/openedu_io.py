@@ -21,13 +21,13 @@ class openedu_io:
         return double(self.next_token())
 
     def next_token(self):
-        return self.tokens.next()
+        return self.tokens.__next__()
 
     def write(self, arg):
         if isinstance(arg, bytes):
             self.ouf.write(arg)
         else:
-            self.ouf.write(bytes(arg))
+            self.ouf.write(str(arg).encode())
 
     def writeln(self, arg):
         self.write(arg)
