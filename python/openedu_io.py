@@ -1,3 +1,14 @@
+def openedu_io_to_str(arg):
+    if isinstance(arg, str):
+        return arg
+    elif isinstance(arg, bytes):
+        return arg.decode()
+    elif isinstance(arg, list):
+        return " ".join(str(i) for i in arg)
+    else:
+        return str(arg)
+
+
 class openedu_io:
     def create_tokenizer(self):
         for line in self.inf:
@@ -5,8 +16,8 @@ class openedu_io:
                 yield token
 
     def __enter__(self):
-        self.inf = open("input.txt", "rb")
-        self.ouf = open("output.txt", "wb")
+        self.inf = open("input.txt", "rb", 1)
+        self.ouf = open("output.txt", "wt", 1)
         self.tokens = self.create_tokenizer()
         return self
 
@@ -23,12 +34,12 @@ class openedu_io:
     def next_token(self):
         return self.tokens.__next__()
 
+    def all_tokens(self):
+        return self.tokens
+
     def write(self, arg):
-        if isinstance(arg, bytes):
-            self.ouf.write(arg)
-        else:
-            self.ouf.write(str(arg).encode())
+        self.ouf.write(openedu_io_to_str(arg))
 
     def writeln(self, arg):
         self.write(arg)
-        self.write('\n')
+        self.write("\n")
