@@ -30,8 +30,8 @@ class openedu_io:
     def next_int(self):
         return int(self.next_token())
 
-    def next_double(self):
-        return double(self.next_token())
+    def next_float(self):
+        return float(self.next_token())
 
     def next_token(self):
         return self.tokens.__next__()
