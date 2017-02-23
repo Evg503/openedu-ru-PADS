@@ -1,9 +1,11 @@
+import inspect
+
 def openedu_io_to_str(arg):
     if isinstance(arg, str):
         return arg
     elif isinstance(arg, bytes):
         return arg.decode()
-    elif isinstance(arg, list):
+    elif hasattr(arg, "__iter__"):
         return " ".join(str(i) for i in arg)
     else:
         return str(arg)
