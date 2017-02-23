@@ -13,6 +13,8 @@
 
 ## Java
 
+Директория: java/
+
 Файлы обертки:
 
 * IO.java
@@ -24,6 +26,8 @@
 * output.txt
 
 ## C
+
+Директория: c/
 
 Файлы обертки:
 
@@ -38,6 +42,8 @@
 
 ## C++
 
+Директория: c++/
+
 Файлы обертки:
 
 * openedu.hpp
@@ -48,3 +54,32 @@
 * example.cpp
 * input.txt
 * output.txt
+
+## Python
+
+Директория: python/
+
+Файлы обертки:
+
+* openedu_io.py
+
+Примеры:
+
+* example.py
+* input.txt
+* output.txt
+
+## PyPy
+
+Директория: pypy/
+
+Файлы обертки:
+
+* openedu_io.py
+
+Примеры:
+
+* example.py
+* input.txt
+* output.txt
+
