@@ -34,7 +34,11 @@ class openedu_io:
         elif isinstance(arg, bytes):
             self.ouf.write(arg.decode())
         elif hasattr(arg, "__iter__"):
-            self.ouf.write(" ".join(str(i) for i in arg))
+            sep = ""
+            for i in arg:
+                self.ouf.write(sep)
+                self.ouf.write(str(i))
+                sep = " "
         else:
             self.ouf.write(str(arg))
 
