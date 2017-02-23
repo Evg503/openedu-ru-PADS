@@ -18,7 +18,7 @@ class openedu_io:
                 yield token
 
     def __enter__(self):
-        self.inf = open("input.txt", "rb", 1)
+        self.inf = open("input.txt", "rt", 1)
         self.ouf = open("output.txt", "wt", 1)
         self.tokens = self.create_tokenizer()
         return self
