@@ -1,4 +1,5 @@
 import inspect
+import io
 
 class openedu_io:
     def create_tokenizer(self):
@@ -8,12 +9,15 @@ class openedu_io:
 
     def __enter__(self):
         self.inf = open("input.txt", "rt", 1)
-        self.ouf = open("output.txt", "wt", 1)
+        self.ouf = io.StringIO()
         self.tokens = self.create_tokenizer()
         return self
 
     def __exit__(self, type, value, traceback):
         self.inf.close()
+        ouf = open("output.txt", "wt", 1)
+        ouf.write(self.ouf.getvalue())
+        ouf.close()
         self.ouf.close()
 
     def next_int(self):
