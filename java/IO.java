@@ -198,6 +198,24 @@ public final class IO {
         }
 
         /**
+         * Prints all given ints, separated by a whitespace and finished with a newline.
+         * @param ints the ints to be printed.
+         */
+        public void println(int[] ints) {
+            int len = ints.length;
+            if (len >= 1) {
+                print(ints[0]);
+                if (len > 1) {
+                    for (int i = 1; i < len; ++i) {
+                        print(' ');
+                        print(ints[i]);
+                    }
+                }
+                println();
+            }
+        }
+
+        /**
          * Prints two longs, separated by a whitespace and finished with a newline.
          * @param v1 the first long.
          * @param v2 the second long.
@@ -238,6 +256,24 @@ public final class IO {
                 print(v);
             }
             println();
+        }
+
+        /**
+         * Prints all given longs, separated by a whitespace and finished with a newline.
+         * @param longs the longs to be printed.
+         */
+        public void println(long[] longs) {
+            int len = longs.length;
+            if (len >= 1) {
+                print(longs[0]);
+                if (len > 1) {
+                    for (int i = 1; i < len; ++i) {
+                        print(' ');
+                        print(longs[i]);
+                    }
+                }
+                println();
+            }
         }
 
         /**
@@ -284,6 +320,24 @@ public final class IO {
         }
 
         /**
+         * Prints all given doubles, separated by a whitespace and finished with a newline.
+         * @param doubles the doubles to be printed.
+         */
+        public void println(double[] doubles) {
+            int len = doubles.length;
+            if (len >= 1) {
+                print(doubles[0]);
+                if (len > 1) {
+                    for (int i = 1; i < len; ++i) {
+                        print(' ');
+                        print(doubles[i]);
+                    }
+                }
+                println();
+            }
+        }
+
+        /**
          * Prints two objects, separated by a whitespace and finished with a newline.
          * @param v1 the first object.
          * @param v2 the second object.
@@ -324,6 +378,24 @@ public final class IO {
                 print(o);
             }
             println();
+        }
+
+        /**
+         * Prints all given objects, separated by a whitespace and finished with a newline.
+         * @param objects the objects to be printed.
+         */
+        public void println(Object[] objects) {
+            int len = objects.length;
+            if (len >= 1) {
+                print(objects[0]);
+                if (len > 1) {
+                    for (int i = 1; i < len; ++i) {
+                        print(' ');
+                        print(objects[i]);
+                    }
+                }
+                println();
+            }
         }
 
         /**
