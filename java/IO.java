@@ -126,7 +126,7 @@ public final class IO {
     }
 
     /**
-     * Scanner is a convenience subclass of {@link PrintWriter}.
+     * Printer is a convenience subclass of {@link PrintWriter}.
      * It provides additional functionality to print several whitespace-separated entities.
      */
     public static final class Printer extends PrintWriter {
@@ -162,15 +162,37 @@ public final class IO {
         }
 
         /**
-         * Prints all given ints, separated by a whitespace and finished with a newline.
-         * @param ints the ints to be printed.
+         * Prints four ints, separated by a whitespace and finished with a newline.
+         * @param v1 the first int.
+         * @param v2 the second int.
+         * @param v3 the third int.
+         * @param v4 the fourth int.
          */
-        public void println(int... ints) {
-            for (int i = 0, iMax = ints.length; i < iMax; ++i) {
-                if (i > 0) {
-                    print(' ');
-                }
-                print(ints[i]);
+        public void println(int v1, int v2, int v3, int v4) {
+            print(v1);
+            print(' ');
+            println(v2, v3, v4);
+        }
+
+        /**
+         * Prints all given ints, separated by a whitespace and finished with a newline.
+         * @param v1 the first int.
+         * @param v2 the second int.
+         * @param v3 the third int.
+         * @param v4 the fourth int.
+         * @param etc all other ints to be printed.
+         */
+        public void println(int v1, int v2, int v3, int v4, int... etc) {
+            print(v1);
+            print(' ');
+            print(v2);
+            print(' ');
+            print(v3);
+            print(' ');
+            print(v4);
+            for (int v : etc) {
+                print(' ');
+                print(v);
             }
             println();
         }
@@ -200,14 +222,20 @@ public final class IO {
 
         /**
          * Prints all given longs, separated by a whitespace and finished with a newline.
-         * @param longs the longs to be printed.
+         * @param v1 the first long.
+         * @param v2 the second long.
+         * @param v3 the third long.
+         * @param etc all other longs to be printed.
          */
-        public void println(long... longs) {
-            for (int i = 0, iMax = longs.length; i < iMax; ++i) {
-                if (i > 0) {
-                    print(' ');
-                }
-                print(longs[i]);
+        public void println(long v1, long v2, long v3, long... etc) {
+            print(v1);
+            print(' ');
+            print(v2);
+            print(' ');
+            print(v3);
+            for (long v : etc) {
+                print(' ');
+                print(v);
             }
             println();
         }
@@ -237,14 +265,20 @@ public final class IO {
 
         /**
          * Prints all given doubles, separated by a whitespace and finished with a newline.
-         * @param doubles the doubles to be printed.
+         * @param v1 the first double.
+         * @param v2 the second double.
+         * @param v3 the third double.
+         * @param etc all other doubles to be printed.
          */
-        public void println(double... doubles) {
-            for (int i = 0, iMax = doubles.length; i < iMax; ++i) {
-                if (i > 0) {
-                    print(' ');
-                }
-                print(doubles[i]);
+        public void println(double v1, double v2, double v3, double... etc) {
+            print(v1);
+            print(' ');
+            print(v2);
+            print(' ');
+            print(v3);
+            for (double v : etc) {
+                print(' ');
+                print(v);
             }
             println();
         }
@@ -274,14 +308,20 @@ public final class IO {
 
         /**
          * Prints all given objects, separated by a whitespace and finished with a newline.
-         * @param doubles the objects to be printed.
+         * @param v1 the first object.
+         * @param v2 the second object.
+         * @param v3 the third object.
+         * @param etc all other objects to be printed.
          */
-        public void println(Object... objects) {
-            for (int i = 0, iMax = objects.length; i < iMax; ++i) {
-                if (i > 0) {
-                    print(' ');
-                }
-                print(objects[i]);
+        public void println(Object v1, Object v2, Object v3, Object... objects) {
+            print(v1);
+            print(' ');
+            print(v2);
+            print(' ');
+            print(v3);
+            for (Object o : objects) {
+                print(' ');
+                print(o);
             }
             println();
         }
