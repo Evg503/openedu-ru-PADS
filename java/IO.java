@@ -323,11 +323,33 @@ public final class IO {
 
         /**
          * Prints all given ints, separated by a whitespace and finished with a newline.
+         * @param first the first int to be printed.
+         * @param others the other ints to be printed.
+         * @return itself.
+         */
+        public Printer println(int first, int... others) {
+            withSpaces().add(first).add(others).println();
+            return this;
+        }
+
+        /**
+         * Prints all given ints, separated by a whitespace and finished with a newline.
          * @param ints the ints to be printed.
          * @return itself.
          */
-        public Printer println(int... ints) {
+        public Printer println(int[] ints) {
             withSpaces().add(ints).println();
+            return this;
+        }
+
+        /**
+         * Prints all given longs, separated by a whitespace and finished with a newline.
+         * @param first the first long to be printed.
+         * @param others the other longs to be printed.
+         * @return itself.
+         */
+        public Printer println(long first, long... others) {
+            withSpaces().add(first).add(others).println();
             return this;
         }
 
@@ -336,8 +358,19 @@ public final class IO {
          * @param longs the longs to be printed.
          * @return itself.
          */
-        public Printer println(long... longs) {
+        public Printer println(long[] longs) {
             withSpaces().add(longs).println();
+            return this;
+        }
+
+        /**
+         * Prints all given doubles, separated by a whitespace and finished with a newline.
+         * @param first the first double to be printed.
+         * @param others the other doubles to be printed.
+         * @return itself.
+         */
+        public Printer println(double first, double... others) {
+            withSpaces().add(first).add(others).println();
             return this;
         }
 
@@ -346,8 +379,19 @@ public final class IO {
          * @param doubles the doubles to be printed.
          * @return itself.
          */
-        public Printer println(double... doubles) {
+        public Printer println(double[] doubles) {
             withSpaces().add(doubles).println();
+            return this;
+        }
+
+        /**
+         * Prints all given objects, separated by a whitespace and finished with a newline.
+         * @param first the first object to be printed.
+         * @param others the other objects to be printed.
+         * @return itself.
+         */
+        public Printer println(Object first, Object... others) {
+            withSpaces().add(first).add(others).println();
             return this;
         }
 
@@ -356,7 +400,7 @@ public final class IO {
          * @param objects the objects to be printed.
          * @return itself.
          */
-        public Printer println(Object... objects) {
+        public Printer println(Object[] objects) {
             withSpaces().add(objects).println();
             return this;
         }
