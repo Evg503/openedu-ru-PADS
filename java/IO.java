@@ -126,10 +126,177 @@ public final class IO {
     }
 
     /**
+     * Allows conveniently printing various primitives and objects
+     * separated by the given character.
+     */
+    public static final class SequencePrinter {
+        private boolean hasStarted = false;
+        private final char separator;
+        private final PrintWriter base;
+
+        /**
+         * Constructs a SequencePrinter out of an existing PrintWriter
+         * and a character to separate tokens.
+         * @param base the PrintWriter used for output.
+         * @separator the character to separate tokens.
+         */
+        public SequencePrinter(PrintWriter base, char separator) {
+            this.base = base;
+            this.separator = separator;
+        }
+
+        /**
+         * Resets the SequencePrinter such that the next token will be output
+         * without the leading separator.
+         * @return itself.
+         */
+        public SequencePrinter begin() {
+            hasStarted = false;
+            return this;
+        }
+
+        private void check() {
+            if (hasStarted) {
+                base.print(separator);
+            }
+            hasStarted = true;
+        }
+
+        /**
+         * Prints a character, with the separator character prepended to it if necessary.
+         * @param value the value to be printed.
+         * @return itself.
+         */
+        public SequencePrinter add(char value) {
+            check();
+            base.print(value);
+            return this;
+        }
+
+        /**
+         * Prints the given characters,
+         * with the separator character prepended to all of them
+         * (including, if necessary, the leading one).
+         * @param values the values to be printed.
+         * @return itself.
+         */
+        public SequencePrinter add(char[] values) {
+            return add(values, 0, values.length);
+        }
+
+        /**
+         * Prints the given characters from the given range,
+         * with the separator character prepended to all of them
+         * (including, if necessary, the leading one).
+         * @param values the values to be printed.
+         * @from the first index to use for printing.
+         * @until the next-to-last index to use for printing.
+         * @return itself.
+         */
+        public SequencePrinter add(char[] values, int from, int until) {
+            for (int i = from; i < until; ++i) {
+                add(values[i]);
+            }
+            return this;
+        }
+
+        public SequencePrinter add(int value) {
+            check();
+            base.print(value);
+            return this;
+        }
+
+        public SequencePrinter add(int[] values) {
+            return add(values, 0, values.length);
+        }
+
+        public SequencePrinter add(int[] values, int from, int until) {
+            for (int i = from; i < until; ++i) {
+                add(values[i]);
+            }
+            return this;
+        }
+
+        public SequencePrinter add(long value) {
+            check();
+            base.print(value);
+            return this;
+        }
+
+        public SequencePrinter add(long[] values) {
+            return add(values, 0, values.length);
+        }
+
+        public SequencePrinter add(long[] values, int from, int until) {
+            for (int i = from; i < until; ++i) {
+                add(values[i]);
+            }
+            return this;
+        }
+
+        public SequencePrinter add(double value) {
+            check();
+            base.print(value);
+            return this;
+        }
+
+        public SequencePrinter add(double[] values) {
+            return add(values, 0, values.length);
+        }
+
+        public SequencePrinter add(double[] values, int from, int until) {
+            for (int i = from; i < until; ++i) {
+                add(values[i]);
+            }
+            return this;
+        }
+
+        public SequencePrinter add(Object value) {
+            check();
+            base.print(value);
+            return this;
+        }
+
+        public SequencePrinter add(Object[] values) {
+            return add(values, 0, values.length);
+        }
+
+        public SequencePrinter add(Object[] values, int from, int until) {
+            for (int i = from; i < until; ++i) {
+                add(values[i]);
+            }
+            return this;
+        }
+
+        public SequencePrinter add(Iterator<?> iterator) {
+            while (iterator.hasNext()) {
+                add(iterator.next().toString());
+            }
+            return this;
+        }
+
+        public SequencePrinter add(Iterable<?> collection) {
+            return add(collection.iterator());
+        }
+
+        public SequencePrinter print() {
+            return begin();
+        }
+
+        public SequencePrinter println() {
+            base.println();
+            return begin();
+        }
+    }
+
+    /**
      * Printer is a convenience subclass of {@link PrintWriter}.
      * It provides additional functionality to print several whitespace-separated entities.
      */
     public static final class Printer extends PrintWriter {
+        private final SequencePrinter spaces = new SequencePrinter(this, ' ');
+        private final SequencePrinter lines = new SequencePrinter(this, '\n');
+
         /**
          * Creates a new Printer which writes to the specified file.
          * @param filename the name of the file to be written to.
@@ -139,280 +306,69 @@ public final class IO {
         }
 
         /**
-         * Prints two ints, separated by a whitespace and finished with a newline.
-         * @param v1 the first int.
-         * @param v2 the second int.
+         * Returns a SequencePrinter which separates output tokens by single whitespaces.
+         * @return the SequencePrinter which separates output tokens by spaces.
          */
-        public void println(int v1, int v2) {
-            print(v1);
-            print(' ');
-            println(v2);
+        public SequencePrinter withSpaces() {
+            return spaces.begin();
         }
 
         /**
-         * Prints three ints, separated by a whitespace and finished with a newline.
-         * @param v1 the first int.
-         * @param v2 the second int.
-         * @param v3 the third int.
+         * Returns a SequencePrinter which separates output tokens by single newlines.
+         * @return the SequencePrinter which separates output tokens by newlines.
          */
-        public void println(int v1, int v2, int v3) {
-            print(v1);
-            print(' ');
-            println(v2, v3);
-        }
-
-        /**
-         * Prints four ints, separated by a whitespace and finished with a newline.
-         * @param v1 the first int.
-         * @param v2 the second int.
-         * @param v3 the third int.
-         * @param v4 the fourth int.
-         */
-        public void println(int v1, int v2, int v3, int v4) {
-            print(v1);
-            print(' ');
-            println(v2, v3, v4);
-        }
-
-        /**
-         * Prints all given ints, separated by a whitespace and finished with a newline.
-         * @param v1 the first int.
-         * @param v2 the second int.
-         * @param v3 the third int.
-         * @param v4 the fourth int.
-         * @param etc all other ints to be printed.
-         */
-        public void println(int v1, int v2, int v3, int v4, int... etc) {
-            print(v1);
-            print(' ');
-            print(v2);
-            print(' ');
-            print(v3);
-            print(' ');
-            print(v4);
-            for (int v : etc) {
-                print(' ');
-                print(v);
-            }
-            println();
+        public SequencePrinter withNewlines() {
+            return lines.begin();
         }
 
         /**
          * Prints all given ints, separated by a whitespace and finished with a newline.
          * @param ints the ints to be printed.
+         * @return itself.
          */
-        public void println(int[] ints) {
-            int len = ints.length;
-            if (len >= 1) {
-                print(ints[0]);
-                if (len > 1) {
-                    for (int i = 1; i < len; ++i) {
-                        print(' ');
-                        print(ints[i]);
-                    }
-                }
-                println();
-            }
-        }
-
-        /**
-         * Prints two longs, separated by a whitespace and finished with a newline.
-         * @param v1 the first long.
-         * @param v2 the second long.
-         */
-        public void println(long v1, long v2) {
-            print(v1);
-            print(' ');
-            println(v2);
-        }
-
-        /**
-         * Prints three longs, separated by a whitespace and finished with a newline.
-         * @param v1 the first long.
-         * @param v2 the second long.
-         * @param v3 the third long.
-         */
-        public void println(long v1, long v2, long v3) {
-            print(v1);
-            print(' ');
-            println(v2, v3);
-        }
-
-        /**
-         * Prints all given longs, separated by a whitespace and finished with a newline.
-         * @param v1 the first long.
-         * @param v2 the second long.
-         * @param v3 the third long.
-         * @param etc all other longs to be printed.
-         */
-        public void println(long v1, long v2, long v3, long... etc) {
-            print(v1);
-            print(' ');
-            print(v2);
-            print(' ');
-            print(v3);
-            for (long v : etc) {
-                print(' ');
-                print(v);
-            }
-            println();
+        public Printer println(int[] ints) {
+            withSpaces().add(ints).println();
+            return this;
         }
 
         /**
          * Prints all given longs, separated by a whitespace and finished with a newline.
          * @param longs the longs to be printed.
+         * @return itself.
          */
-        public void println(long[] longs) {
-            int len = longs.length;
-            if (len >= 1) {
-                print(longs[0]);
-                if (len > 1) {
-                    for (int i = 1; i < len; ++i) {
-                        print(' ');
-                        print(longs[i]);
-                    }
-                }
-                println();
-            }
-        }
-
-        /**
-         * Prints two doubles, separated by a whitespace and finished with a newline.
-         * @param v1 the first double.
-         * @param v2 the second double.
-         */
-        public void println(double v1, double v2) {
-            print(v1);
-            print(' ');
-            println(v2);
-        }
-
-        /**
-         * Prints three doubles, separated by a whitespace and finished with a newline.
-         * @param v1 the first double.
-         * @param v2 the second double.
-         * @param v3 the third double.
-         */
-        public void println(double v1, double v2, double v3) {
-            print(v1);
-            print(' ');
-            println(v2, v3);
-        }
-
-        /**
-         * Prints all given doubles, separated by a whitespace and finished with a newline.
-         * @param v1 the first double.
-         * @param v2 the second double.
-         * @param v3 the third double.
-         * @param etc all other doubles to be printed.
-         */
-        public void println(double v1, double v2, double v3, double... etc) {
-            print(v1);
-            print(' ');
-            print(v2);
-            print(' ');
-            print(v3);
-            for (double v : etc) {
-                print(' ');
-                print(v);
-            }
-            println();
+        public Printer println(long[] longs) {
+            withSpaces().add(longs).println();
+            return this;
         }
 
         /**
          * Prints all given doubles, separated by a whitespace and finished with a newline.
          * @param doubles the doubles to be printed.
+         * @return itself.
          */
-        public void println(double[] doubles) {
-            int len = doubles.length;
-            if (len >= 1) {
-                print(doubles[0]);
-                if (len > 1) {
-                    for (int i = 1; i < len; ++i) {
-                        print(' ');
-                        print(doubles[i]);
-                    }
-                }
-                println();
-            }
-        }
-
-        /**
-         * Prints two objects, separated by a whitespace and finished with a newline.
-         * @param v1 the first object.
-         * @param v2 the second object.
-         */
-        public void println(Object v1, Object v2) {
-            print(v1);
-            print(' ');
-            println(v2);
-        }
-
-        /**
-         * Prints three objects, separated by a whitespace and finished with a newline.
-         * @param v1 the first object.
-         * @param v2 the second object.
-         * @param v3 the third object.
-         */
-        public void println(Object v1, Object v2, Object v3) {
-            print(v1);
-            print(' ');
-            println(v2, v3);
-        }
-
-        /**
-         * Prints all given objects, separated by a whitespace and finished with a newline.
-         * @param v1 the first object.
-         * @param v2 the second object.
-         * @param v3 the third object.
-         * @param etc all other objects to be printed.
-         */
-        public void println(Object v1, Object v2, Object v3, Object... objects) {
-            print(v1);
-            print(' ');
-            print(v2);
-            print(' ');
-            print(v3);
-            for (Object o : objects) {
-                print(' ');
-                print(o);
-            }
-            println();
+        public Printer println(double[] doubles) {
+            withSpaces().add(doubles).println();
+            return this;
         }
 
         /**
          * Prints all given objects, separated by a whitespace and finished with a newline.
          * @param objects the objects to be printed.
+         * @return itself.
          */
-        public void println(Object[] objects) {
-            int len = objects.length;
-            if (len >= 1) {
-                print(objects[0]);
-                if (len > 1) {
-                    for (int i = 1; i < len; ++i) {
-                        print(' ');
-                        print(objects[i]);
-                    }
-                }
-                println();
-            }
+        public Printer println(Object[] objects) {
+            withSpaces().add(objects).println();
+            return this;
         }
 
         /**
          * Prints the elements of the given collection, separated by a whitespace and finished with a newline.
          * @param collection the collection to be printed.
+         * @return itself.
          */
-        public void printlnCollection(Collection<?> collection) {
-            Iterator<?> iterator = collection.iterator();
-            boolean printedSomething = false;
-            while (iterator.hasNext()) {
-                if (printedSomething) {
-                    print(' ');
-                }
-                print(iterator.next());
-                printedSomething = true;
-            }
-            println();
+        public Printer printlnCollection(Collection<?> collection) {
+            withSpaces().add(collection).println();
+            return this;
         }
     }
 }
