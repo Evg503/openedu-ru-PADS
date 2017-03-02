@@ -323,17 +323,6 @@ public final class IO {
 
         /**
          * Prints all given ints, separated by a whitespace and finished with a newline.
-         * @param first the first int to be printed.
-         * @param others the other ints to be printed.
-         * @return itself.
-         */
-        public Printer println(int first, int... others) {
-            withSpaces().add(first).add(others).println();
-            return this;
-        }
-
-        /**
-         * Prints all given ints, separated by a whitespace and finished with a newline.
          * @param ints the ints to be printed.
          * @return itself.
          */
@@ -347,7 +336,9 @@ public final class IO {
          * @param first the first long to be printed.
          * @param others the other longs to be printed.
          * @return itself.
+         * @deprecated use the {$link SequencePrinter} obtained by {@link withSpaces}.
          */
+        @Deprecated
         public Printer println(long first, long... others) {
             withSpaces().add(first).add(others).println();
             return this;
@@ -365,33 +356,11 @@ public final class IO {
 
         /**
          * Prints all given doubles, separated by a whitespace and finished with a newline.
-         * @param first the first double to be printed.
-         * @param others the other doubles to be printed.
-         * @return itself.
-         */
-        public Printer println(double first, double... others) {
-            withSpaces().add(first).add(others).println();
-            return this;
-        }
-
-        /**
-         * Prints all given doubles, separated by a whitespace and finished with a newline.
          * @param doubles the doubles to be printed.
          * @return itself.
          */
         public Printer println(double[] doubles) {
             withSpaces().add(doubles).println();
-            return this;
-        }
-
-        /**
-         * Prints all given objects, separated by a whitespace and finished with a newline.
-         * @param first the first object to be printed.
-         * @param others the other objects to be printed.
-         * @return itself.
-         */
-        public Printer println(Object first, Object... others) {
-            withSpaces().add(first).add(others).println();
             return this;
         }
 
