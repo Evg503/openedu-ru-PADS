@@ -326,7 +326,7 @@ public final class IO {
          * @param ints the ints to be printed.
          * @return itself.
          */
-        public Printer println(int[] ints) {
+        public Printer println(int... ints) {
             withSpaces().add(ints).println();
             return this;
         }
@@ -336,7 +336,7 @@ public final class IO {
          * @param longs the longs to be printed.
          * @return itself.
          */
-        public Printer println(long[] longs) {
+        public Printer println(long... longs) {
             withSpaces().add(longs).println();
             return this;
         }
@@ -346,7 +346,7 @@ public final class IO {
          * @param doubles the doubles to be printed.
          * @return itself.
          */
-        public Printer println(double[] doubles) {
+        public Printer println(double... doubles) {
             withSpaces().add(doubles).println();
             return this;
         }
@@ -356,7 +356,7 @@ public final class IO {
          * @param objects the objects to be printed.
          * @return itself.
          */
-        public Printer println(Object[] objects) {
+        public Printer println(Object... objects) {
             withSpaces().add(objects).println();
             return this;
         }
