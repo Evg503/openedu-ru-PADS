@@ -131,7 +131,7 @@ public final class IO {
      */
     public static final class SequencePrinter {
         private boolean hasStarted = false;
-        private final char separator;
+        private final String separator;
         private final PrintWriter base;
 
         /**
@@ -140,7 +140,7 @@ public final class IO {
          * @param base the PrintWriter used for output.
          * @separator the character to separate tokens.
          */
-        public SequencePrinter(PrintWriter base, char separator) {
+        public SequencePrinter(PrintWriter base, String separator) {
             this.base = base;
             this.separator = separator;
         }
@@ -294,8 +294,9 @@ public final class IO {
      * It provides additional functionality to print several whitespace-separated entities.
      */
     public static final class Printer extends PrintWriter {
-        private final SequencePrinter spaces = new SequencePrinter(this, ' ');
-        private final SequencePrinter lines = new SequencePrinter(this, '\n');
+        private final String lineSeparator = System.getProperty("line.separator");
+        private final SequencePrinter spaces = new SequencePrinter(this, " ");
+        private final SequencePrinter lines = new SequencePrinter(this, lineSeparator);
 
         /**
          * Creates a new Printer which writes to the specified file.
@@ -382,6 +383,61 @@ public final class IO {
         public Printer printlnCollection(Collection<?> collection) {
             withSpaces().add(collection).println();
             return this;
+        }
+
+        /// Getting rid of the lock
+
+        @Override
+        public void flush() {
+            try {
+                out.flush();
+            } catch (IOException ex) {
+                throw new WrappedIOException(ex);
+            }
+        }
+
+        @Override
+        public void close() {
+            try {
+                if (out != null) {
+                    out.close();
+                    out = null;
+                }
+            } catch (IOException ex) {
+                throw new WrappedIOException(ex);
+            }
+        }
+
+        @Override
+        public void write(int c) {
+            try {
+                out.write(c);
+            } catch (IOException ex) {
+                throw new WrappedIOException(ex);
+            }
+        }
+
+        @Override
+        public void write(char[] buf, int off, int len) {
+            try {
+                out.write(buf, off, len);
+            } catch (IOException ex) {
+                throw new WrappedIOException(ex);
+            }
+        }
+
+        @Override
+        public void write(String s, int off, int len) {
+            try {
+                out.write(s, off, len);
+            } catch (IOException ex) {
+                throw new WrappedIOException(ex);
+            }
+        }
+
+        @Override
+        public void println() {
+            write(lineSeparator);
         }
     }
 }
