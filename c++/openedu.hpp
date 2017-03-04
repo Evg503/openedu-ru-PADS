@@ -111,6 +111,7 @@ struct openedu_out {
     {
         print(begin, end);
         print_char('\n');
+        return *this;
     }
     /**
      * Writes the given int.
