@@ -296,6 +296,7 @@ public final class IO {
     public static final class Printer extends PrintWriter {
         private final String lineSeparator = System.getProperty("line.separator");
         private final SequencePrinter spaces = new SequencePrinter(this, " ");
+        private final SequencePrinter concat = new SequencePrinter(this, "");
         private final SequencePrinter lines = new SequencePrinter(this, lineSeparator);
 
         /**
@@ -304,6 +305,14 @@ public final class IO {
          */
         public Printer(String filename) throws IOException {
             super(filename);
+        }
+
+        /**
+         * Returns a SequencePrinter which does not separate output tokens.
+         * @return the SequencePrinter which does not separate output tokens.
+         */
+        public SequencePrinter concat() {
+            return concat.begin();
         }
 
         /**
