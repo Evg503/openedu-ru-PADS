@@ -74,6 +74,19 @@ openedu_in const &openedu_in::operator >> (std::string &target) const
     while (true)
     {
         int ch = fgetc(inf);
+        if (ch == EOF)
+        {
+            return *this;
+        }
+        if (ch > ' ')
+        {
+            target.push_back(ch);
+            break;
+        }
+    }
+    while (true)
+    {
+        int ch = fgetc(inf);
         if (ch == EOF || ch <= ' ')
         {
             return *this;
