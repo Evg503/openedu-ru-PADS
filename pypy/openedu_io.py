@@ -1,19 +1,22 @@
 import inspect
 import io
+import mmap
 
 class openedu_io:
     def create_tokenizer(self):
-        for line in self.inf:
+        for line in iter(self.mm.readline, ""):
             for token in line.split():
                 yield token
 
     def __enter__(self):
         self.inf = open("input.txt", "rt", 1)
+        self.mm = mmap.mmap(self.inf.fileno(), 0, access = mmap.ACCESS_READ)
         self.ouf = io.StringIO()
         self.tokens = self.create_tokenizer()
         return self
 
     def __exit__(self, type, value, traceback):
+        self.mm.close()
         self.inf.close()
         ouf = open("output.txt", "wt", 1)
         ouf.write(self.ouf.getvalue())
