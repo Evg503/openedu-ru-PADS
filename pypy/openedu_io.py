@@ -4,7 +4,7 @@ import mmap
 
 class openedu_io:
     def create_tokenizer(self):
-        for line in iter(self.mm.readline, ""):
+        for line in iter(self.mm.readline, b""):
             for token in line.split():
                 yield token
 
