@@ -343,19 +343,6 @@ public final class IO {
 
         /**
          * Prints all given longs, separated by a whitespace and finished with a newline.
-         * @param first the first long to be printed.
-         * @param others the other longs to be printed.
-         * @return itself.
-         * @deprecated use the {$link SequencePrinter} obtained by {@link withSpaces}.
-         */
-        @Deprecated
-        public Printer println(long first, long... others) {
-            withSpaces().add(first).add(others).println();
-            return this;
-        }
-
-        /**
-         * Prints all given longs, separated by a whitespace and finished with a newline.
          * @param longs the longs to be printed.
          * @return itself.
          */
