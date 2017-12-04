@@ -1,0 +1,104 @@
+10
+1 8 2 1 4 7 3 2 3 6
+------------------------
+100
+A 3
+A 4
+A 2
+A 3
+A 4
+A 3
+A 4
+A 2
+A 3
+A 4
+A 3
+A 4
+A 2
+A 3
+A 4
+A 3
+A 4
+A 2
+A 3
+A 4
+A 3
+A 4
+A 2
+A 3
+A 4
+A 3
+A 4
+A 2
+A 3
+A 4
+A 3
+A 4
+A 2
+A 3
+A 4
+A 3
+A 4
+A 2
+A 3
+A 4
+A 3
+A 4
+A 2
+A 3
+A 4
+A 3
+A 4
+A 2
+A 3
+A 4
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
